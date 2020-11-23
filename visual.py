@@ -12,7 +12,7 @@ def trajectory(X, Y, Z):
     ax.set_xlabel('X', fontsize=15, fontweight='bold')
     ax.set_ylabel('Y', fontsize=15, fontweight='bold')
     ax.set_zlabel('Z', fontsize=15, fontweight='bold')
-    fig.savefig('3D.jpg')
+    fig.savefig('plots/3D.jpg')
 
 def project_xy(X, Y, Z):
     fig = plt.figure()
@@ -20,7 +20,7 @@ def project_xy(X, Y, Z):
     ax.plot(X, Y, 'red', alpha=0.5)
     ax.set_xlabel('X', fontsize=15, fontweight='bold')
     ax.set_ylabel('Y', fontsize=15, fontweight='bold')
-    fig.savefig('xy.jpg')
+    fig.savefig('plots/xy.jpg')
 
 def project_yz(X, Y, Z):
     fig = plt.figure()
@@ -28,7 +28,7 @@ def project_yz(X, Y, Z):
     ax.plot(Y, Z, 'red', alpha=0.5)
     ax.set_xlabel('Y', fontsize=15, fontweight='bold')
     ax.set_ylabel('Z', fontsize=15, fontweight='bold')
-    fig.savefig('yz.jpg')
+    fig.savefig('plots/yz.jpg')
 
 def project_xz(X, Y, Z):
     fig = plt.figure()
@@ -36,7 +36,7 @@ def project_xz(X, Y, Z):
     ax.plot(X, Z, 'red', alpha=0.5)
     ax.set_xlabel('X', fontsize=15, fontweight='bold')
     ax.set_ylabel('Z', fontsize=15, fontweight='bold')
-    fig.savefig('xz.jpg')
+    fig.savefig('plots/xz.jpg')
 
 def time_x(X):
     fig = plt.figure()
@@ -45,7 +45,7 @@ def time_x(X):
     ax.plot(t, X, 'red', alpha=0.5)
     ax.set_xlabel('time', fontsize=15, fontweight='bold')
     ax.set_ylabel('X', fontsize=15, fontweight='bold')
-    fig.savefig('time_x.jpg')
+    fig.savefig('plots/time_x.jpg')
 
 def time_y(Y):
     fig = plt.figure()
@@ -54,7 +54,7 @@ def time_y(Y):
     ax.plot(t, Y, 'red', alpha=0.5)
     ax.set_xlabel('time', fontsize=15, fontweight='bold')
     ax.set_ylabel('Y', fontsize=15, fontweight='bold')
-    fig.savefig('time_y.jpg')
+    fig.savefig('plots/time_y.jpg')
 
 def time_z(Z):
     fig = plt.figure()
@@ -63,7 +63,7 @@ def time_z(Z):
     ax.plot(t, Z, 'red', alpha=0.5)
     ax.set_xlabel('time', fontsize=15, fontweight='bold')
     ax.set_ylabel('Z', fontsize=15, fontweight='bold')
-    fig.savefig('time_z.jpg')
+    fig.savefig('plots/time_z.jpg')
 
 def butterfly_effect():
     a, b, c = 0.2, 0.2, 5.7
@@ -79,18 +79,18 @@ def butterfly_effect():
     ax.set_xlabel('time', fontsize=15, fontweight='bold')
     ax.set_ylabel('X', fontsize=15, fontweight='bold')
     ax.legend()
-    fig.savefig('butterfly_x.jpg')
+    fig.savefig('plots/butterfly_x.jpg')
 
+if __name__ == "__main__":
+    a, b, c = 0.2, 0.2, 5.7
+    x0, y0, z0 = 1, 2, 3
+    X, Y, Z = simulator(x0, y0, z0, a, b, c, 0.01, 20000)
 
-a, b, c = 0.2, 0.2, 5.7
-x0, y0, z0 = 1, 2, 3
-X, Y, Z = simulator(x0, y0, z0, a, b, c, 0.01, 20000)
-
-trajectory(X, Y, Z)
-project_xy(X, Y, Z)
-project_xz(X, Y, Z)
-project_yz(X, Y, Z)
-time_x(X)
-time_y(Y)
-time_z(Z)
-butterfly_effect()
+    trajectory(X, Y, Z)
+    project_xy(X, Y, Z)
+    project_xz(X, Y, Z)
+    project_yz(X, Y, Z)
+    time_x(X)
+    time_y(Y)
+    time_z(Z)
+    butterfly_effect()
