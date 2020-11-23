@@ -21,8 +21,23 @@ time series X         |  time series Y         |  time series Z         |  butte
 :--------------------:| :--------------------: | :--------------------: | :-------------------------:
 ![](plots/time_x.jpg) |  ![](plots/time_y.jpg) | ![](plots/time_z.jpg)  | ![](plots/butterfly_x.jpg)  
 
-# Modelling
-### Experiment 1 for fixed parameter a=0.2, b=0.2, c=5.7
-Three types of neural networks will be trained to simulate the non-linear dynamics of the Rössler attractor with fixed parameters (a=0.2, b=0.2, c=5.7). The type1 is Multilayer perceptron (MLP), the type2 is recurrent neural network (RNN) and the type3 is Transformer network using attention mechanism. For the development and validation of each model, data was split into training segment, validation segment and testing segment as below:
+# Pre-Modelling Preparation
+### Data splitting
+The whole time series was split into training segment, validation segment and testing segment as below:
 
 <img src="plots/data_split.png" width="1000"/>
+
+### Window Setting
+A random window will be sampled out to train the model. One seeting you can change is the "stride" in config.json (sampling 1 point from stride number of orignal points). Another setting you can change is the window size ("w_size" in config.json). The first w_size-1 time points will be used as input to the model and the last one as prediction target. 
+
+<p align="center">
+  <img src="plots/window.png", width="600"/>
+</p>
+
+See some examples below:
+w_size=40; stride=2                       |  w_size=40; stride=20                      |  w_size=40; stride=40         
+:----------------------------------------:| :----------------------------------------: | :---------------------------------------: 
+![](plots/window_1_size=40_stride=2.jpg)  |  ![](plots/window_1_size=40_stride=20.jpg) | ![](plots/window_1_size=40_stride=40.jpg)      
+
+# Modelling
+Three types of neural networks will be trained to simulate the non-linear dynamics of the Rössler attractor with fixed parameters (a=0.2, b=0.2, c=5.7). The type1 is Multilayer perceptron (MLP), the type2 is recurrent neural network (RNN) and the type3 is Transformer network using attention mechanism.
