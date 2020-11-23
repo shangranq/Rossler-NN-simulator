@@ -1,8 +1,9 @@
 from dataloader import Rossler, dataset
 from torch.utils.data import DataLoader
+from visual import show_window
 
 class ModelDev:
-    
+
     def __init__(self, config):
         self.config = config
         self.prepare_dataloaders(config)
@@ -19,5 +20,9 @@ class ModelDev:
 
 
     def train(self):
+        idx = 0
         for X_i, Y_i, Z_i, X_o, Y_o, Z_o in self.train_dataloader:
             print(X_i.shape, X_o.shape)
+            show_window(X_i.data.numpy()[0, :], X_o.data.numpy()[0, :], idx, self.config['w_size'], self.config['stride'])
+            idx += 1
+            if idx == 3: break

@@ -81,6 +81,18 @@ def butterfly_effect():
     ax.legend()
     fig.savefig('plots/butterfly_x.jpg')
 
+def show_window(data_i, data_o, idx, w_size, stride):
+    fig = plt.figure()
+    ax = fig.add_subplot(111)
+    t = [i*stride for i in range(data_i.shape[0])]
+    ax.plot(t, data_i, 'red', marker='*', alpha=0.5, label="input")
+    ax.plot([t[-1]+stride], data_o, 'blue', marker='*', alpha=0.5, label="target")
+    ax.set_xlabel('time step', fontsize=15, fontweight='bold')
+    ax.set_ylabel('X', fontsize=15, fontweight='bold')
+    ax.legend()
+    fig.savefig('plots/window_{}_size={}_stride={}.jpg'.format(idx, w_size, stride))
+
+
 if __name__ == "__main__":
     a, b, c = 0.2, 0.2, 5.7
     x0, y0, z0 = 1, 2, 3

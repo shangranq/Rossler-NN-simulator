@@ -6,11 +6,11 @@ class Rossler:
     def __init__(self, config):
         x0, y0, z0 = config['x0'], config['y0'], config['z0']
         a,  b,  c  = config['a'], config['b'], config['c']
-        step,  N   = config['time_step'], config['total_steps']
+        step, N, s = config['time_step'], config['total_steps'], config['stride']
         X, Y, Z = simulator(x0, y0, z0, a, b, c, step, N)
-        self.train_X, self.valid_X, self.test_X = X[:N//2], X[N//2:N*3//4], X[N*3//4:]
-        self.train_Y, self.valid_Y, self.test_Y = Y[:N//2], Y[N//2:N*3//4], Y[N*3//4:]
-        self.train_Z, self.valid_Z, self.test_Z = Z[:N//2], Z[N//2:N*3//4], Z[N*3//4:]
+        self.train_X, self.valid_X, self.test_X = X[:N//2:s], X[N//2:N*3//4:s], X[N*3//4::s]
+        self.train_Y, self.valid_Y, self.test_Y = Y[:N//2:s], Y[N//2:N*3//4:s], Y[N*3//4::s]
+        self.train_Z, self.valid_Z, self.test_Z = Z[:N//2:s], Z[N//2:N*3//4:s], Z[N*3//4::s]
 
 
 class dataset(Dataset):
