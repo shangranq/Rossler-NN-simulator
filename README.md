@@ -22,3 +22,7 @@ time series X         |  time series Y         |  time series Z         |  butte
 ![](plots/time_x.jpg) |  ![](plots/time_y.jpg) | ![](plots/time_z.jpg)  | ![](plots/butterfly_x.jpg)  
 
 # Modelling
+### Experiment 1 for fixed parameter a=0.2, b=0.2, c=5.7
+Three types of neural networks will be trained to simulate the non-linear dynamics of the Rössler attractor with fixed parameters (a=0.2, b=0.2, c=5.7). The type1 is Multilayer perceptron (MLP), the type2 is recurrent neural network (RNN) and the type3 is Transformer network using attention mechanism. For the development and validation of each model, data was split into training segment, validation segment and testing segment as below:
+
+<img src="plots/data_split.png" width="1000"/>
