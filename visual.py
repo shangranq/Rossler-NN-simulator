@@ -106,7 +106,7 @@ def show_a_test_window(data_i, data_o, pred_o, idx, stride):
     fig.clf()
     plt.close()
 
-def show_long_window(data, pred, stride, w_size):
+def show_long_window(data, pred, stride, w_size, start_idx):
     mi, ma = np.min(data), np.max(data)
     fig = plt.figure(figsize=(30,10))
     ax = fig.add_subplot(111)
@@ -118,7 +118,7 @@ def show_long_window(data, pred, stride, w_size):
     ax.set_ylabel('X', fontsize=15, fontweight='bold')
     ax.set_ylim((mi-5, ma+5))
     ax.legend()
-    fig.savefig('plots/long_test_window.jpg')
+    fig.savefig('plots/long_test_window_{}.jpg'.format(start_idx))
     fig.clf()
     plt.close()
 

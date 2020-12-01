@@ -134,19 +134,20 @@ class ModelDev:
                 idx += 1
 
 
-    def test_long_window(self, start_idx, length):
+    def test_long_window(self, length):
         self.model.train(False)
         self.load_weights()
-        X_I = self.data.test_X[start_idx:start_idx+length]
-        X_pred = X_I[:self.config['data']['w_size']-1]
-        with torch.no_grad():
-            while len(X_pred) < len(X_I):
-                nparray = np.array(X_pred[-self.config['data']['w_size']+1:])
-                nparray = np.expand_dims(nparray, axis=0)
-                torchTensor = torch.FloatTensor(nparray)
-                pred = self.model(torchTensor)
-                X_pred.append(pred.data.squeeze().numpy().tolist())
-        show_long_window(X_I, X_pred, self.config['data']['stride'], self.config['data']['w_size'])
+        for start_idx in [100, 200, 300, 400, 500]:
+            X_I = self.data.test_X[start_idx:start_idx+length]
+            X_pred = X_I[:self.config['data']['w_size']-1]
+            with torch.no_grad():
+                while len(X_pred) < len(X_I):
+                    nparray = np.array(X_pred[-self.config['data']['w_size']+1:])
+                    nparray = np.expand_dims(nparray, axis=0)
+                    torchTensor = torch.FloatTensor(nparray)
+                    pred = self.model(torchTensor)
+                    X_pred.append(pred.data.squeeze().numpy().tolist())
+            show_long_window(X_I, X_pred, self.config['data']['stride'], self.config['data']['w_size'], start_idx)
 
 
 

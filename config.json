@@ -19,7 +19,7 @@
         "drop_rate"   : 0.5
   },
   "train": {
-        "epochs"      : 200,
+        "epochs"      : 1000,
         "model_name"  : "MLP_x",
         "lr"          : 0.01
   }
