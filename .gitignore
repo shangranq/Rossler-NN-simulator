@@ -1,3 +1,5 @@
 plots/.DS_Store/
 .DS_Store
 /__pycache__/
+/checkpoint_dir/
+/tb_log/

@@ -8,4 +8,7 @@ if __name__ == "__main__":
     config = read_json('config.json')
     print(config)
     model = ModelDev(config)
-    model.train()
+    # model.train()
+    print('test MSE error ', model.test_MSE())
+    # model.test_a_window()
+    model.test_long_window(300, 500)
