@@ -1,6 +1,8 @@
-from torch.utils.data import Dataset
+from torch.utils.data import Dataset, DataLoader
 from RosslerSolver import simulator
 import numpy as np
+from utils import read_json
+
 
 class Rossler:
     def __init__(self, config):
@@ -26,6 +28,15 @@ class dataset(Dataset):
         Y_input, Y_output = self.Y[idx:idx + self.w_size - 1], self.Y[idx + self.w_size - 1:idx + self.w_size]
         Z_input, Z_output = self.Z[idx:idx + self.w_size - 1], self.Z[idx + self.w_size - 1:idx + self.w_size]
         return X_input, Y_input, Z_input, X_output, Y_output, Z_output
+
+
+if __name__ == '__main__':
+    config = read_json('config.json')["data"]
+    data = Rossler(config)
+    train_data = dataset(data.train_X, data.train_Y, data.train_Z, config['w_size'])
+    train_dataloader = DataLoader(train_data, batch_size=config['batch_size'], shuffle=True, drop_last=True)
+    for X_input, Y_input, Z_input, X_output, Y_output, Z_output in train_dataloader:
+        print(X_input.shape, X_output.shape)
 
 
 

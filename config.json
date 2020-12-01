@@ -1,13 +1,26 @@
 {
-  "x0"          : 1,
-  "y0"          : 2,
-  "z0"          : 3,
-  "a"           : 0.2,
-  "b"           : 0.2,
-  "c"           : 5.7,
-  "time_step"   : 0.01,
-  "total_steps" : 20000,
-  "w_size"      : 40,
-  "batch_size"  : 16,
-  "stride"      : 40
+  "data": {
+        "x0"          : 1,
+        "y0"          : 2,
+        "z0"          : 3,
+        "a"           : 0.2,
+        "b"           : 0.2,
+        "c"           : 5.7,
+        "time_step"   : 0.01,
+        "total_steps" : 20000,
+        "w_size"      : 40,
+        "batch_size"  : 16,
+        "stride"      : 40
+  },
+  "MLP": {
+        "in_size"     : 39,
+        "out_size"    : 1,
+        "fil_num"     : 30,
+        "drop_rate"   : 0.5
+  },
+  "train": {
+        "epochs"      : 100,
+        "model_name"  : "MLP_x",
+        "lr"          : 0.01
+  }
 }
