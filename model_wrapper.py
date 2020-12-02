@@ -62,6 +62,7 @@ class ModelDev:
         LOSS = []
         for X_i, Y_i, Z_i, X_o, Y_o, Z_o in self.train_dataloader:
             X_i, Y_i, Z_i, X_o, Y_o, Z_o = cast_to_float(X_i, Y_i, Z_i, X_o, Y_o, Z_o)
+            X_i += torch.normal(0, 0.1, X_i.shape)
             self.model.zero_grad()
             pred = self.model(X_i)
             loss = self.loss(pred, X_o)
