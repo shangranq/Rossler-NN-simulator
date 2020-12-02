@@ -54,6 +54,31 @@ class MLP_exo(nn.Module):
         return x
 
 
+class MLP_3D(nn.Module):
+    def __init__(self, config):
+        super(MLP_3D, self).__init__()
+        in_size, fil_num, drop_rate, out_size = config['in_size'], config['fil_num'], config['drop_rate'], 3
+        self.fil_num = fil_num
+        self.out_size = out_size
+        self.in_size = in_size
+        self.dense1 = nn.Sequential(
+            nn.Dropout(drop_rate),
+            nn.Linear(in_size*3, fil_num),
+            nn.BatchNorm1d(fil_num),
+        )
+        self.dense2 = nn.Sequential(
+            nn.LeakyReLU(),
+            nn.Dropout(drop_rate),
+            nn.Linear(fil_num, out_size),
+        )
+
+    def forward(self, x_i, y_i, z_i):
+        x = torch.cat((x_i, y_i, z_i), dim=1)
+        x = self.dense1(x)
+        x = self.dense2(x)
+        return x
+
+
 class LSTM(nn.Module):
     def __init__(self, config):
         super(LSTM, self).__init__()

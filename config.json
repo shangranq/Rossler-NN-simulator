@@ -26,7 +26,7 @@
   },
   "train": {
         "epochs"      : 500,
-        "model_name"  : "MLP_x_augment",
+        "model_name"  : "MLP",
         "lr"          : 0.001
   }
 }

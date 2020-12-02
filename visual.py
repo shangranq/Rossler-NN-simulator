@@ -6,38 +6,38 @@ import numpy as np
 import os
 from RosslerSolver import simulator
 
-def trajectory(X, Y, Z):
+def trajectory(X, Y, Z, model_name):
     fig = plt.figure()
     ax = plt.axes(projection='3d')
-    ax.plot3D(X, Y, Z, 'red', alpha=0.5)
+    ax.plot3D(X, Y, Z, 'red', alpha=0.8)
     ax.set_xlabel('X', fontsize=15, fontweight='bold')
     ax.set_ylabel('Y', fontsize=15, fontweight='bold')
     ax.set_zlabel('Z', fontsize=15, fontweight='bold')
-    fig.savefig('plots/3D.jpg')
+    fig.savefig('plots/{}/3D.jpg'.format(model_name))
 
-def project_xy(X, Y, Z):
+def project_xy(X, Y, Z, model_name):
     fig = plt.figure()
     ax = fig.add_subplot(111)
     ax.plot(X, Y, 'red', alpha=0.5)
     ax.set_xlabel('X', fontsize=15, fontweight='bold')
     ax.set_ylabel('Y', fontsize=15, fontweight='bold')
-    fig.savefig('plots/xy.jpg')
+    fig.savefig('plots/{}/xy.jpg'.format(model_name))
 
-def project_yz(X, Y, Z):
+def project_yz(X, Y, Z, model_name):
     fig = plt.figure()
     ax = fig.add_subplot(111)
     ax.plot(Y, Z, 'red', alpha=0.5)
     ax.set_xlabel('Y', fontsize=15, fontweight='bold')
     ax.set_ylabel('Z', fontsize=15, fontweight='bold')
-    fig.savefig('plots/yz.jpg')
+    fig.savefig('plots/{}/yz.jpg'.format(model_name))
 
-def project_xz(X, Y, Z):
+def project_xz(X, Y, Z, model_name):
     fig = plt.figure()
     ax = fig.add_subplot(111)
     ax.plot(X, Z, 'red', alpha=0.5)
     ax.set_xlabel('X', fontsize=15, fontweight='bold')
     ax.set_ylabel('Z', fontsize=15, fontweight='bold')
-    fig.savefig('plots/xz.jpg')
+    fig.savefig('plots/{}/xz.jpg'.format(model_name))
 
 def time_x(X):
     fig = plt.figure()
@@ -107,7 +107,7 @@ def show_a_test_window(data_i, data_o, pred_o, idx, stride):
     fig.clf()
     plt.close()
 
-def show_long_window(data, pred, stride, w_size, start_idx, model_name):
+def show_long_window(data, pred, stride, w_size, start_idx, model_name, mode='x'):
     mi, ma = np.min(data), np.max(data)
     fig = plt.figure(figsize=(30,10))
     ax = fig.add_subplot(111)
@@ -121,7 +121,7 @@ def show_long_window(data, pred, stride, w_size, start_idx, model_name):
     ax.legend()
     if not os.path.exists('plots/{}/'.format(model_name)):
         os.mkdir('plots/{}/'.format(model_name))
-    fig.savefig('plots/{}/long_test_window_{}.jpg'.format(model_name, start_idx))
+    fig.savefig('plots/{}/long_test_window_{}_{}.jpg'.format(model_name, mode, start_idx))
     fig.clf()
     plt.close()
 
