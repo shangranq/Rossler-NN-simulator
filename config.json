@@ -8,19 +8,25 @@
         "c"           : 5.7,
         "time_step"   : 0.01,
         "total_steps" : 2000000,
-        "w_size"      : 40,
+        "w_size"      : 60,
         "batch_size"  : 16,
         "stride"      : 40
   },
   "MLP": {
-        "in_size"     : 39,
+        "in_size"     : 59,
         "out_size"    : 1,
         "fil_num"     : 30,
-        "drop_rate"   : 0.5
+        "drop_rate"   : 0.5,
+        "min"         : -10,
+        "max"         : 14
+  },
+  "LSTM": {
+        "hidden_size" : 20,
+        "stack_layer" : 2
   },
   "train": {
-        "epochs"      : 1000,
+        "epochs"      : 500,
         "model_name"  : "MLP_x",
-        "lr"          : 0.01
+        "lr"          : 0.001
   }
 }

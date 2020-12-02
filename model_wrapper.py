@@ -1,7 +1,7 @@
 from dataloader import Rossler, dataset
 from torch.utils.data import DataLoader
 from visual import show_window, show_a_test_window, show_long_window
-from models import MLP
+from models import MLP, MLP_exo
 import torch
 import torch.nn as nn
 import os
@@ -145,12 +145,9 @@ class ModelDev:
                     nparray = np.array(X_pred[-self.config['data']['w_size']+1:])
                     nparray = np.expand_dims(nparray, axis=0)
                     torchTensor = torch.FloatTensor(nparray)
-                    pred = self.model(torchTensor)
-                    X_pred.append(pred.data.squeeze().numpy().tolist())
-            show_long_window(X_I, X_pred, self.config['data']['stride'], self.config['data']['w_size'], start_idx)
-
-
-
+                    pred = self.model(torchTensor).data.squeeze().numpy().tolist()
+                    X_pred.append(pred)
+            show_long_window(X_I, X_pred, self.config['data']['stride'], self.config['data']['w_size'], start_idx, self.config['train']['model_name'])
 
 
     def load_weights(self):
