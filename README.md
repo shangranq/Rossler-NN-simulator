@@ -72,3 +72,12 @@ see the recovered trajectory below generated with a single inital window only.
 3D trajectory         |  xy projection         |  yz projection         |  xz projection
 :--------------------:| :--------------------: | :--------------------: | :-------------------------:
 ![](plots/MLP/3D.jpg) |  ![](plots/MLP/xy.jpg) | ![](plots/MLP/yz.jpg)  | ![](plots/MLP/xz.jpg)  
+
+
+### Recurrent Neural Network (LSTM)
+This repo also contains a Long short term memory (LSTM) model see below. The LSTM has a stacked structure with 2 layers and the input sequence of the model is the X, Y, Z coordinates within the window. Again the output will be the predictet coordinates at the next time point. 
+
+<p align="center">
+  <img src="plots/LSTM.png", width="1000"/>
+</p> 
+
