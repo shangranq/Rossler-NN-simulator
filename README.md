@@ -81,3 +81,8 @@ This repo also contains a Long short term memory (LSTM) model see below. The LST
   <img src="plots/LSTM.png", width="1000"/>
 </p> 
 
+LSTM model achieved MSE on testing part with value 0.00071. The recovered attractor generated with a single inital window only from LSTM can be seen below. 
+
+3D trajectory         |  xy projection         |  yz projection         |  xz projection
+:--------------------:| :--------------------: | :--------------------: | :-------------------------:
+![](plots/LSTM/3D.jpg) |  ![](plots/LSTM/xy.jpg) | ![](plots/LSTM/yz.jpg)  | ![](plots/LSTM/xz.jpg)  
