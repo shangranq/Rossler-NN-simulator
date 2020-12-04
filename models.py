@@ -95,11 +95,31 @@ class LSTM(nn.Module):
         return x
 
 
+class Transformer(nn.Module):
+    def __init__(self, config):
+        super(Transformer, self).__init__()
+        d_model = config['d_model']
+        nhead = config['nhead']
+        nlayer = config['nlayer']
+        w_size = config['w_size'] - 1
+        encoder_layer = nn.TransformerEncoderLayer(d_model=d_model, nhead=nhead, dim_feedforward=40)
+        self.transformer_encoder = nn.TransformerEncoder(encoder_layer, num_layers=nlayer)
+        self.emb = nn.Linear(3, d_model)
+        self.reg = nn.Linear(w_size * d_model, 3)
+
+    def forward(self, x_i, y_i, z_i):
+        input = torch.stack((x_i, y_i, z_i), dim=2)
+        input = self.emb(input)
+        out = self.transformer_encoder(input)
+        out = out.view(out.shape[0], -1)
+        out = self.reg(out)
+        return out
+
 
 if __name__ == "__main__":
-    config = read_json('config.json')["MLP"]
-    model = MLP(config)
-    print(model)
+    # config = read_json('config.json')["MLP"]
+    # model = MLP(config)
+    # print(model)
 
     # config = read_json('config.json')["LSTM"]
     # model = LSTM(config)
@@ -109,11 +129,19 @@ if __name__ == "__main__":
     # out = model(X_i, Y_i, Z_i)
     # print(len(out), out.shape)
 
-    config = read_json('config.json')["MLP"]
-    model = MLP_exo(config)
+    # config = read_json('config.json')["MLP"]
+    # model = MLP_exo(config)
+    # X_i = torch.rand((16, 59))
+    # Y_i = torch.rand((16, 59))
+    # Z_i = torch.rand((16, 59))
+    # out = model(X_i, Y_i, Z_i)
+    # print(out.shape)
+
+    config = read_json('config.json')["Trans"]
+    model = Transformer(config)
+    print(model)
     X_i = torch.rand((16, 59))
     Y_i = torch.rand((16, 59))
     Z_i = torch.rand((16, 59))
     out = model(X_i, Y_i, Z_i)
     print(out.shape)
-

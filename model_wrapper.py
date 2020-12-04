@@ -1,7 +1,7 @@
 from dataloader import Rossler, dataset
 from torch.utils.data import DataLoader
 from visual import show_window, show_a_test_window, show_long_window, trajectory, project_xy, project_yz, project_xz
-from models import MLP, MLP_exo, MLP_3D
+from models import MLP, MLP_3D, LSTM, Transformer
 import torch
 import torch.nn as nn
 import os
@@ -20,7 +20,9 @@ class ModelDev:
         self.prepare_dataloaders(config['data'])
 
         # self.model = MLP(config['MLP'])
-        self.model = MLP_3D(config['MLP'])
+        # self.model = MLP_3D(config['MLP'])
+        # self.model = LSTM(config['LSTM'])
+        self.model = Transformer(config['Trans'])
         print(self.model)
 
         self.model_name = config['train']['model_name']

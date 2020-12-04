@@ -24,9 +24,15 @@
         "hidden_size" : 20,
         "stack_layer" : 2
   },
+  "Trans": {
+        "d_model"     : 20,
+        "nhead"       : 4,
+        "nlayer"      : 2,
+        "w_size"      : 60
+  },
   "train": {
         "epochs"      : 500,
-        "model_name"  : "MLP",
+        "model_name"  : "Transformer",
         "lr"          : 0.001
   }
 }
