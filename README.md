@@ -43,7 +43,7 @@ w_size=40; stride=2                       |  w_size=40; stride=20               
 Three types of neural networks will be trained to simulate the non-linear dynamics of the Rössler attractor with fixed parameters (a=0.2, b=0.2, c=5.7). The type1 is Multilayer perceptron (MLP), the type2 is recurrent neural network (RNN) and the type3 is Transformer network using attention mechanism.
 
 ### Multilayer perceptron (MLP)
-The first model contained in the repo is Multilayer perceptron (MLP). MLP can be trained to predict the x coordinate from a window of previous x coordinates (see below). 
+The first model contained in the repo is Multilayer perceptron (MLP). MLP can be trained to predict the x coordinate from a window of previous x coordinates (see below). The MLP model used to predict X only will be labeled as "MLP_x". 
 
 <p align="center">
   <img src="plots/MLP.png", width="300"/>
@@ -55,7 +55,7 @@ Mean Square Error (MSE) metric has been evaluated on the testing part MSE=0.0011
   <img src="plots/MLP_x_augment/long_test_window_400.jpg", width="1000"/>
 </p>
 
-MLP can also be trained to predict X, Y and Z coordinates simutaneously (see below for the schema).
+MLP can also be trained to predict X, Y and Z coordinates simutaneously (see below for the schema) which will be labeled as "MLP_3D".
 
 <p align="center">
   <img src="plots/MLP_3D.png", width="300"/>
@@ -86,3 +86,28 @@ LSTM model achieved MSE on testing part with value 0.00071. The recovered attrac
 3D trajectory         |  xy projection         |  yz projection         |  xz projection
 :--------------------:| :--------------------: | :--------------------: | :-------------------------:
 ![](plots/LSTM/3D.jpg) |  ![](plots/LSTM/xy.jpg) | ![](plots/LSTM/yz.jpg)  | ![](plots/LSTM/xz.jpg)  
+
+### Transformer Encoder
+This repo also contains a transformer model see below. Since our goal is to predict a single future time point instead of a sequence of time points, only the encoder part of the Transformer model was used here to extract features for final prediction. 
+
+<p align="center">
+  <img src="plots/Transformer.png", width="300"/>
+</p> 
+
+Transformer model achieved MSE on testing part with value 0.0016. The recovered attractor generated with a single inital window only from LSTM can be seen below. 
+
+3D trajectory                 |  xy projection                 |  yz projection                 |  xz projection
+:----------------------------:| :----------------------------: | :----------------------------: | :---------------------------:
+![](plots/Transformer/3D.jpg) |  ![](plots/Transformer/xy.jpg) | ![](plots/Transformer/yz.jpg)  | ![](plots/Transformer/xz.jpg)  
+
+
+# Appendix 
+Model comparison on testing MSE. All the results below are based on the setting of window_size=60 and stride=40. 
+| Model         | testing MSE   |
+| ------------- | ------------- |
+| MLP_x         | 0.0011        |
+| MLP_3D        | 0.0030        |
+| LSTM          | 0.00071       |
+| Transformer   | 0.0016        |
+
+
