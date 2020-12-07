@@ -110,4 +110,7 @@ Model comparison on testing MSE. All the results below are based on the setting 
 | LSTM          | 0.00071       |
 | Transformer   | 0.0016        |
 
-
+Below for how fast the model converged. 
+<p align="center">
+  <img src="plots/loss_time.png", width="1000"/>
+</p> 
